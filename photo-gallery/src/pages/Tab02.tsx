@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
-import { camera, trash, close } from 'ionicons/icons';
+import { trash, close } from 'ionicons/icons';
 import {
   IonContent, IonHeader, IonPage, IonTitle, IonToolbar,
-  IonFab, IonFabButton, IonIcon, IonGrid, IonRow,
+  IonGrid, IonRow,
   IonCol, IonImg, IonActionSheet
 } from '@ionic/react';
-import './Tab2.css';
+import './Tab02.css';
 import { usePhotoGallery, Photo } from '../hooks/usePhotoGallery';
 
-const Tab2: React.FC = () => {
+const Tab02: React.FC = () => {
 
-  const { photos, takePhoto, deletePhoto } = usePhotoGallery();
+  const { photos, deletePhoto } = usePhotoGallery();
 
   const [photoToDelete, setPhotoToDelete] = useState<Photo>();
 
@@ -25,18 +25,13 @@ const Tab2: React.FC = () => {
         <IonGrid>
           <IonRow>
             {photos.map((photo, index) => (
-              <IonCol size="6" key={index}>
+              <IonCol size="4" key={index}>
                 <IonImg onClick={() => setPhotoToDelete(photo)}
                   src={photo.webviewPath} />
               </IonCol>
             ))}
           </IonRow>
         </IonGrid>
-        <IonFab vertical="bottom" horizontal="center" slot="fixed">
-          <IonFabButton onClick={() => takePhoto()}>
-            <IonIcon icon={camera}></IonIcon>
-          </IonFabButton>
-        </IonFab>
         <IonActionSheet
           isOpen={!!photoToDelete}
           buttons={[{
@@ -61,4 +56,4 @@ const Tab2: React.FC = () => {
   );
 };
 
-export default Tab2;
+export default Tab02;

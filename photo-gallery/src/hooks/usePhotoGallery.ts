@@ -11,7 +11,7 @@ export function usePhotoGallery() {
 
     const { get, set } = useStorage();
 
-    const { deleteFile, getUri, readFile, writeFile } = useFilesystem();
+    const { deleteFile, readFile, writeFile } = useFilesystem();
 
     const { getPhoto } = useCamera();
 
@@ -57,7 +57,8 @@ export function usePhotoGallery() {
         const cameraPhoto = await getPhoto({
             resultType: CameraResultType.Uri,
             source: CameraSource.Camera,
-            quality: 100
+            allowEditing: true,
+            quality: 200
         });
 
         const fileName = new Date().getTime() + '.jpeg';
