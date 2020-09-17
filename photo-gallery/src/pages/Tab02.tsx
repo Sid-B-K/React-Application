@@ -17,7 +17,7 @@ const Tab02: React.FC = () => {
   return (
     <IonPage>
       <IonHeader>
-        <IonToolbar>
+        <IonToolbar color="primary">
           <IonTitle>Photo Gallery</IonTitle>
         </IonToolbar>
       </IonHeader>

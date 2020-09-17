@@ -42,7 +42,7 @@ const App: React.FC = () => (
           <Route path="/tab02" component={Tab2} exact={true} />
           <Route path="/" render={() => <Redirect to="/tab01" />} exact={true} />
         </IonRouterOutlet>
-        <IonTabBar slot="bottom" onClick={() => window.location.reload(false)}>
+        <IonTabBar color="primary" slot="bottom" onClick={() => window.location.reload(false)}>
           <IonTabButton tab="tab01" href="/tab01">
             <IonIcon icon={cameraOutline} />
             <IonLabel>Camera</IonLabel>
