@@ -1,9 +1,19 @@
-import React, {useRef, useState} from 'react';
-import { IonApp, IonHeader, IonContent, IonToolbar, IonTitle, IonGrid, IonRow, IonCol, IonItem, IonLabel, IonInput, IonAlert } from '@ionic/react';
-
-import BMIcontrols from './components/BMIcontrols';
-import BmiResult from './components/BmiResult';
-import InputControl from './components/InputControls';
+import React from 'react';
+import { Redirect, Route } from 'react-router-dom';
+import {
+  IonApp,
+  IonIcon,
+  IonLabel,
+  IonRouterOutlet,
+  IonTabBar,
+  IonTabButton,
+  IonTabs
+} from '@ionic/react';
+import { IonReactRouter } from '@ionic/react-router';
+import { /*ecllipse,*/ images, square, triangle } from 'ionicons/icons';
+import Tab1 from './pages/Tab1';
+import Tab2 from './pages/Tab2';
+import Tab3 from './pages/Tab3';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -24,88 +34,33 @@ import '@ionic/react/css/display.css';
 /* Theme variables */
 import './theme/variables.css';
 
-const App: React.FC = () => {
-
-  const [calculatedBmi, setCalculatedBmi] = useState<number>();
-  const [error, setError] = useState<string>();
-  const [CalcUnit, setCalcUnit] = useState<'mkg' | 'ftlbs'>("mkg");
-
-  const weightInputRef = useRef<HTMLIonInputElement>(null);
-  const heightInputRef = useRef<HTMLIonInputElement>(null);
-
-  const calculateBMI = () => { 
-    const enteredWeight = weightInputRef.current!.value;
-    const enteredHeight = heightInputRef.current!.value;
-
-    if(!enteredHeight || !enteredWeight || +enteredHeight <= 0 || +enteredWeight <= 0){
-      setError('Please Enter a VALID input value!');
-      return;
-    }
-
-    const weightConversionFactor = CalcUnit === 'ftlbs'? 2.2 : 1;
-    const heightConversionFactor = CalcUnit === 'ftlbs'? 3.28 : 1;
-
-    const weight = +enteredWeight / weightConversionFactor;
-    const height = +enteredHeight / heightConversionFactor;
-
-    const bmi = weight / (height * height);
-    
-    setCalculatedBmi(bmi);
-  };
-
-  const resetInputs = () => { 
-    weightInputRef.current!.value = '';
-    heightInputRef.current!.value = '';
-  };
-
-  const clearError = () => {
-    setError('');
-  };
-
-  const selectCalcUnitHandler = (selectedValue: 'mkg' | 'ftlbs') => {
-    setCalcUnit(selectedValue);
-  };
-
-  return (
-    <React.Fragment>
-      <IonAlert isOpen={!!error} message={error} buttons={[{text: 'Ok', handler: clearError }]} />
-    <IonApp>
-      <IonHeader>
-        <IonToolbar color="primary">
-          <IonTitle>BMI Calculator</IonTitle>
-        </IonToolbar>
-      </IonHeader>
-      <IonContent>
-        <IonGrid>
-          <IonRow>
-            <IonCol>
-              <InputControl selectedValue={CalcUnit} onSelectValue={selectCalcUnitHandler} />
-            </IonCol>
-          </IonRow>
-          <IonRow>
-            <IonCol>
-              <IonItem>
-                <IonLabel position="floating">Your Height ({CalcUnit === "mkg"? "meters" : "feet"})</IonLabel>
-                <IonInput type="number" ref={heightInputRef}></IonInput>
-              </IonItem>
-            </IonCol>
-          </IonRow>
-          <IonRow>
-            <IonCol>
-              <IonItem>
-                <IonLabel position="floating">Your Weight ({CalcUnit === "mkg"? "kg" : "lbs"})</IonLabel>
-                <IonInput type="number" ref={weightInputRef}></IonInput>
-              </IonItem>
-            </IonCol>
-          </IonRow>
-          <BMIcontrols onCalculate={calculateBMI} onReset={resetInputs}/>
-          {calculatedBmi && (
-          <BmiResult result={calculatedBmi}/>)}
-        </IonGrid>
-      </IonContent>
-    </IonApp>
-    </React.Fragment>
-  );
-}
+const App: React.FC = () => (
+  <IonApp>
+    <IonReactRouter>
+      <IonTabs>
+        <IonRouterOutlet>
+          <Route path="/tab1" component={Tab1} exact={true} />
+          <Route path="/tab2" component={Tab2} exact={true} />
+          <Route path="/tab3" component={Tab3} />
+          <Route path="/" render={() => <Redirect to="/tab1" />} exact={true} />
+        </IonRouterOutlet>
+        <IonTabBar slot="bottom">
+          <IonTabButton tab="tab1" href="/tab1">
+            <IonIcon icon={triangle} />
+            <IonLabel>Tab 1</IonLabel>
+          </IonTabButton>
+          <IonTabButton tab="tab2" href="/tab2">
+            <IonIcon icon={images} />
+            <IonLabel>Photos</IonLabel>
+          </IonTabButton>
+          <IonTabButton tab="tab3" href="/tab3">
+            <IonIcon icon={square} />
+            <IonLabel>Tab 3</IonLabel>
+          </IonTabButton>
+        </IonTabBar>
+      </IonTabs>
+    </IonReactRouter>
+  </IonApp>
+);
 
 export default App;
