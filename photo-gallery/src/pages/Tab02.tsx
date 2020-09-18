@@ -1,19 +1,27 @@
+// All necessary imports
+// Hook import
 import React, { useState } from 'react';
+import { usePhotoGallery, Photo } from '../hooks/usePhotoGallery';
+// Icons import
 import { trash, close } from 'ionicons/icons';
+// Components import
 import {
   IonContent, IonHeader, IonPage, IonTitle, IonToolbar,
   IonGrid, IonRow,
   IonCol, IonImg, IonActionSheet
 } from '@ionic/react';
-import './Tab02.css';
-import { usePhotoGallery, Photo } from '../hooks/usePhotoGallery';
+// CSS import
+import './Tab.css';
 
+// Second page 
 const Tab02: React.FC = () => {
 
   const { photos, deletePhoto } = usePhotoGallery();
 
+  // useState hook
   const [photoToDelete, setPhotoToDelete] = useState<Photo>();
 
+  // Photos are stored and displayed on this page, and can also be deleted
   return (
     <IonPage>
       <IonHeader>
@@ -22,6 +30,10 @@ const Tab02: React.FC = () => {
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
+        <div className="contentHeading">
+          <h1 style={{ fontSize: "250%" }}>Want to know how you look? You're in the right place!</h1>
+          <h2 style={{ fontSize: "200%" }}>Don't worry, If you did't like it, click it then delete it!</h2>
+        </div>
         <IonGrid>
           <IonRow>
             {photos.map((photo, index) => (

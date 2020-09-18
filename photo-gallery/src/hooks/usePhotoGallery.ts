@@ -1,3 +1,5 @@
+// All necessary imports
+// React Hooks imports
 import { useState, useEffect } from "react";
 import { useCamera } from '@ionic/react-hooks/camera';
 import { useFilesystem, base64FromPath } from '@ionic/react-hooks/filesystem';
@@ -8,7 +10,7 @@ import { CameraResultType, CameraSource, CameraPhoto, Capacitor, FilesystemDirec
 const PHOTO_STORAGE = "photos";
 
 export function usePhotoGallery() {
-
+    // Declaring hooks
     const { get, set } = useStorage();
 
     const { deleteFile, readFile, writeFile } = useFilesystem();
@@ -17,6 +19,7 @@ export function usePhotoGallery() {
 
     const [photos, setPhotos] = useState<Photo[]>([]);
 
+    // Function for loading photos from the storage API
     useEffect(() => {
         const loadSaved = async () => {
             const photosString = await get('photos');
@@ -37,6 +40,7 @@ export function usePhotoGallery() {
         loadSaved();
     }, [get, readFile]);
 
+    // Delete function
     const deletePhoto = async (photo: Photo) => {
         // Remove this photo from the Photos reference data array
         const newPhotos = photos.filter(p => p.filepath !== photo.filepath);
@@ -53,6 +57,7 @@ export function usePhotoGallery() {
         setPhotos(newPhotos);
     };
 
+    // Function for taking photos
     const takePhoto = async () => {
         const cameraPhoto = await getPhoto({
             resultType: CameraResultType.Uri,
@@ -68,6 +73,7 @@ export function usePhotoGallery() {
         set(PHOTO_STORAGE, JSON.stringify(newPhotos));
     };
 
+    // Function for saving photos in the gallery
     const savePicture = async (photo: CameraPhoto, fileName: string): Promise<Photo> => {
         let base64Data: string;
         // "hybrid" will detect Cordova or Capacitor;

@@ -1,17 +1,23 @@
+// All necessary imports
 import React from 'react';
-import { camera } from 'ionicons/icons';
+// Icons import
+import { camera, arrowRedo } from 'ionicons/icons';
+// Components import
 import {
   IonContent, IonHeader, IonPage, IonTitle, IonToolbar,
   IonFab, IonFabButton, IonIcon, IonGrid, IonRow,
   IonCol
 } from '@ionic/react';
-import './Tab01.css';
+// CSS import
+import './Tab.css';
+// Hook import
 import { usePhotoGallery } from '../hooks/usePhotoGallery';
 
+// First page (tab) function
 const Tab01: React.FC = () => {
 
   const { photos, takePhoto } = usePhotoGallery();
-
+  // Here photo can be clicked/uploaded and stored in the filesystem API
   return (
     <IonPage>
       <IonHeader>
@@ -20,6 +26,11 @@ const Tab01: React.FC = () => {
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
+        <div className="contentHeading">
+          <h1 style={{ fontSize: "400%" }}><IonIcon icon={arrowRedo} />Welcome to Photo-Gallery Application</h1>
+          <h2 style={{ fontSize: "200%" }}><IonIcon icon={arrowRedo} />Click on Camera Button to take/upload photos to the Gallery!</h2>
+          <h2><IonIcon icon={arrowRedo} />The stored photos in the photos tab/page can also be deleted by clicking on them.</h2>
+        </div>
         <IonGrid>
           <IonRow>
             {photos.map((photo, index) => (
