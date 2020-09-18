@@ -70,6 +70,7 @@ $ npm install -g @ionic/cli native-run cordova-res
 - Added code so that this app works on different platforms.
 - Then, added the delete function, to delete the photos.
 
-## Future work:
+## Unsolved problems (for future work):
 - `This application can also be deployed as an app to mobile devices.`
 - `Extra features such as filtering and editing can be added...`
+(I could do them but, didn't have much time).
