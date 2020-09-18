@@ -30,10 +30,18 @@ Command-line interface/terminal (CLI):
 - Windows users: I recommend the built-in command line (cmd) or the Powershell CLI, running in Administrator mode.
 - Mac/Linux users, virtually any terminal will work.
 
-Install Ionic Tooling in CLI:    
+For this app Ionic needs to be installed, to install Ionic Tooling in CLI:    
 ```
 $ npm install -g @ionic/cli native-run cordova-res
 ```
+
+## This project includes the following files:
+- `App.tsx` - This has the router (which connects the application together).
+- `index.tsx` - used for starting the app.
+- `Tab01.tsx` - All the content of camera tab.
+- `Tab02.tsx` - All the content of storage and display tab.
+- `Tab.css` - Style for the tabs.
+- `usePhotoGallery.ts` - All hooks and functions for camera, storage and display.
   
 ## Creating & Setup of the App:
 1) Go to desktop in CLI and create basic Ionic React App with the tabs template,
