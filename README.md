@@ -16,6 +16,7 @@ This app uses Camera, File System, and Storage APIs.
 - [x] Easy to understand.
 - [x] Well formatted code.
 - [x] Uses React hooks and PWA elements.
+- [x] More importantly, Looks great!
 
 ## All tools required for this App:
 
