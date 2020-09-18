@@ -27,11 +27,10 @@ Visual Studio Code:
 Text editor, can be downloaded [here](https://code.visualstudio.com/).
 
 Command-line interface/terminal (CLI):
-Windows users: I recommend the built-in command line (cmd) or the Powershell CLI, running in Administrator mode.
-Mac/Linux users, virtually any terminal will work.
+- Windows users: I recommend the built-in command line (cmd) or the Powershell CLI, running in Administrator mode.
+- Mac/Linux users, virtually any terminal will work.
 
-Install Ionic Tooling in CLI:
-Type:     
+Install Ionic Tooling in CLI:    
 ```
 $ npm install -g @ionic/cli native-run cordova-res
 ```
@@ -63,3 +62,14 @@ $ npm install -g @ionic/cli native-run cordova-res
    $ ionic serve
    ```
    
+## Approach:
+- Created an app along with the tab system. 
+- Then, created a camera component which only takes photos using the Camera API.
+- Saved the photos in the file system, using the FileSystem API.
+- Created a storage to store photos, using the Storage API then, loaded the photos from file system to the storage.
+- Added code so that this app works on different platforms.
+- Then, added the delete function, to delete the photos.
+
+## Future work:
+- `This application can also be deployed as an app to mobile devices.`
+- `Extra features such as filtering and editing can be added...`
